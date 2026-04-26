@@ -1,4 +1,19 @@
 function RegisterPoint() {
+  function gerarDiasDoMes(ano: number, mes: number) {
+    const diasDoMes = new Date(ano, mes, 0).getDate();
+
+    return Array.from({ length: diasDoMes }, (_, i) => {
+      const data = new Date(ano, mes - 1, i + 1);
+      return data.toLocaleDateString("pt-BR", {
+        day: "2-digit",
+        month: "2-digit",
+        weekday: "short"
+      });
+    });
+  }
+
+  const dias = gerarDiasDoMes(2026, 4);
+
   return (
     <div>
       <h1 className="text-[32px]">Registro de Ponto - Abril 2026</h1>
@@ -14,46 +29,16 @@ function RegisterPoint() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>01/04, qua</td>
-            <td>08:00</td>
-            <td>12:00</td>
-            <td>14:00</td>
-            <td>19:00</td>
-            <td>01:00</td>
-          </tr>
-          <tr>
-            <td>01/04, qua</td>
-            <td>08:00</td>
-            <td>12:00</td>
-            <td>14:00</td>
-            <td>19:00</td>
-            <td>01:00</td>
-          </tr>
-          <tr>
-            <td>01/04, qua</td>
-            <td>08:00</td>
-            <td>12:00</td>
-            <td>14:00</td>
-            <td>19:00</td>
-            <td>01:00</td>
-          </tr>
-          <tr>
-            <td>01/04, qua</td>
-            <td>08:00</td>
-            <td>12:00</td>
-            <td>14:00</td>
-            <td>17:00</td>
-            <td>01:00</td>
-          </tr>
-          <tr>
-            <td>01/04, qua</td>
-            <td>08:00</td>
-            <td>12:00</td>
-            <td>14:00</td>
-            <td>19:00</td>
-            <td>01:00</td>
-          </tr>
+          {dias.map((dia) => (
+            <tr key={dia}>
+              <td>{dia}</td>
+              <td><input type="time"/></td>
+              <td><input type="time"/></td>
+              <td><input type="time"/></td>
+              <td><input type="time"/></td>
+              <td>01:00</td>
+            </tr>
+          ))}
         </tbody>
         <tfoot>
           <tr>
